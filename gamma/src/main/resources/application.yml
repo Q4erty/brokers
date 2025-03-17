@@ -1,0 +1,16 @@
+server:
+  port: 8000
+
+spring:
+  kafka:
+    bootstrap-servers: ${GOOGLE_SERVER}:9093:9093
+    consumer:
+      group-id: my_consumer_v2  # Группа потребителей
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: latest  # Начинать с самого старого сообщения, если нет сохраненной позиции
+      enable-auto-commit: true  # Автоматическое подтверждение сообщений
+    logging:
+      level:
+        org.springframework.kafka: TRACE
+        org.apache.kafka: TRACE
